@@ -1,6 +1,7 @@
 name: Update prod branch on release
 on:
   push:
+  workflow_dispatch:
 jobs:
   updateBranch:
     name: Update staging branch
