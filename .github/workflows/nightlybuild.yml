@@ -14,7 +14,11 @@ jobs:
         fetch-depth: 0
     - name: Merge Develop into Staging
       run: |
-        git fetch
-        git checkout staging
-        git merge main -m "Auto-merge main into staging"
-        git push origin staging
+        # git fetch
+        # git checkout staging
+        # git merge main -m "Auto-merge main into staging"
+        # git push origin staging
+        date > generated.txt
+        git add .
+        git commit -m "generated"
+        git push
