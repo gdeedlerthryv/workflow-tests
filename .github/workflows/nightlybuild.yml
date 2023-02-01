@@ -1,21 +1,21 @@
-name: Merge Develop into Stagingg
-
+name: Update prod branch on release
 on:
   push:
-
+  workflow_dispatch:
 jobs:
-  build:
+  updateBranch:
+    name: Update staging branch
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout the Repository
+    - name: Checkout the repository
       uses: actions/checkout@v3
       with:
-        token: ${{ secrets.TOKEN }}
-
+        token: ${{ github.TOKEN }}
+        fetch-depth: 0
     - name: Merge Develop into Staging
-      run: |
-        git fetch
-        git checkout -b staging
-        git merge main -m "Auto-merge main to staging"
-        git push origin staging
+      run: date > generated.txt
+      run: git config user.name github-actions
+      run: git config user.email github-actions@github.com
+      run: git add .
+      run: git commit -m "generated"
+      run: git push
