@@ -17,6 +17,5 @@ jobs:
       run: |
         git fetch
         git checkout -b staging
-        git pull
-        git merge origin/main -m "Auto-merge main to staging"
+        git merge main -m "Auto-merge main to staging"
         git push origin staging
