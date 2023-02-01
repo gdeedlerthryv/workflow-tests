@@ -1,30 +1,22 @@
-name: Update Staging Branch
+name: 'Nightly Merge'
 
 on:
   push:
-    branches:
-      - main
 
 jobs:
-  update_staging_branch:
+  nightly-merge:
+
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout main branch
-      uses: actions/checkout@v2
-      with:
-        ref: main
-        fetch-depth: 0
-        token: ${{ secrets.TOKEN }}
+    - name: Checkout
+      uses: actions/checkout@v1
 
-    - name: Checkout staging branch
-      uses: actions/checkout@v2
+    - name: Nightly Merge
+      uses: robotology/gh-action-nightly-merge@v1.3.3
       with:
-        ref: staging
-        fetch-depth: 0
-        token: ${{ secrets.TOKEN }}
-
-    - name: Rebase Staging Branch
-      run: |
-        git rebase main
-        git push origin staging --force
+        stable_branch: 'develop'
+        development_branch: 'staging'
+        allow_ff: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.TOKEN }}
