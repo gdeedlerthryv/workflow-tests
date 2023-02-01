@@ -15,6 +15,6 @@ jobs:
 
     - name: Merge Develop into Staging
       run: |
-        git checkout staging
+        git checkout -b staging
         git merge main
         git push origin staging
