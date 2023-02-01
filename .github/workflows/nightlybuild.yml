@@ -9,9 +9,11 @@ jobs:
     steps:
     - name: Checkout the repository
       uses: actions/checkout@v3
-    - run: |
-        git branch
-        git status
+      with:
+        token: ${{ github.TOKEN }}
+        fetch-depth: 0
+    - name: Merge Develop into Staging
+      run: |
         date > generated.txt
         git config user.name github-actions
         git config user.email github-actions@github.com
