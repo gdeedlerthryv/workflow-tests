@@ -1,13 +1,20 @@
-name: Nightly Build
+name: Merge Develop into Staging
 
 on:
   schedule:
-    - cron: '25 16 * * *'
+    - cron: '0 0 * * *'
   workflow_dispatch:
 
 jobs:
-  test_schedule:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Nightly build testing
-        run: echo "This is a test that should run at 11:05 AM EST"
+    - name: Checkout the Repository
+      uses: actions/checkout@v2
+
+    - name: Merge Develop into Staging
+      run: |
+        git checkout staging
+        git merge main
+        git push origin staging
