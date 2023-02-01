@@ -1,0 +1,14 @@
+name: Nightly Build
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '5 4 * * *'
+
+jobs:
+  test_schedule:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Nightly build testing
+        run: echo "This is a test that should run at 11:05 AM EST"
+        run: echo "Or if it's manually triggered"
