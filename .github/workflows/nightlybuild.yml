@@ -1,16 +1,20 @@
-name: Sync multiple branches
-on:
-  workflow_dispatch:
-jobs:
-  sync-branch:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
+name: Merge Develop into Staging
 
-      - name: Merge development -> staging
-        uses: devmasx/merge-branch@master
-        with:
-          type: now
-          from_branch: main
-          target_branch: staging
-          github_token: ${{ github.TOKEN }}
+on:
+  schedule:
+    - cron: '0 17 * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout the Repository
+      uses: actions/checkout@v3
+      with:
+        token: ${{ secrets.TOKEN }}
+
+    - name: Merge Develop into Staging
+      run: |
+        git branch
