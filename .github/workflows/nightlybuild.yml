@@ -18,7 +18,7 @@ jobs:
     - name: Merge Develop into Staging
       run: |
         git fetch
-        git checkout -b staging
+        git checkout staging
         git pull
         git merge main -m "Auto-merge main to staging"
         git push origin staging
