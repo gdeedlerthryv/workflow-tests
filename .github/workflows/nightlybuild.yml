@@ -1,7 +1,9 @@
-name: Merge Develop into Stagingg
+
 
 on:
   push:
+    branches:
+      - 'main'
 
 jobs:
   build:
