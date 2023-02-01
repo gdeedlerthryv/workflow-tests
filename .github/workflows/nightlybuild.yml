@@ -1,22 +1,15 @@
-name: 'Nightly Merge'
-
+name: Update prod branch on release
 on:
   push:
-
 jobs:
-  nightly-merge:
-
+  updateBranch:
+    name: Update staging branch
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout
-      uses: actions/checkout@v1
-
-    - name: Nightly Merge
-      uses: robotology/gh-action-nightly-merge@v1.3.3
+    - uses: actions/checkout@master
+    - uses: Embraser01/update-git-branch-action@v1.0.0
+      if: github.ref == 'refs/heads/main'
       with:
-        stable_branch: 'main'
-        development_branch: 'staging'
-        allow_ff: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        branch: staging
+        force: 1 # To push-force to the branch
+        githubToken: ${{ secrets.TOKEN }} # Github Token
