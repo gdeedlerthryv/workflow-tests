@@ -14,10 +14,6 @@ jobs:
         fetch-depth: 0
     - name: Merge Develop into Staging
       run: |
-        # git fetch
-        # git checkout staging
-        # git merge main -m "Auto-merge main into staging"
-        # git push origin staging
         date > generated.txt
         git config user.name github-actions
         git config user.email github-actions@github.com
