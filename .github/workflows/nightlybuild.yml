@@ -18,4 +18,6 @@ jobs:
     - name: Merge Develop into Staging
       run: |
         git fetch
-        git branch
+        git checkout staging
+        git merge main
+        git push staging
