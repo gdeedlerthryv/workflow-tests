@@ -1,9 +1,7 @@
 name: Merge Develop into Staging
 
 on:
-  schedule:
-    - cron: '0 17 * * *'
-  workflow_dispatch:
+  push:
 
 jobs:
   build:
@@ -20,5 +18,5 @@ jobs:
         git fetch
         git checkout staging
         git pull
-        git merge main -m "Auto-merge main to staging"
-        git push
+        git merge origin/main -m "Auto-merge main to staging"
+        git push origin staging
