@@ -1,4 +1,4 @@
-name: Merge Develop into Staging
+name: Merge Develop into Stagingg
 
 on:
   push:
