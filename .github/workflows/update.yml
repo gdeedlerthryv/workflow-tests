@@ -32,6 +32,6 @@ jobs:
           git config user.name "Update branch"
           git config user.email github-actions@github.com
           git checkout staging
-          git merge main --no-edit -m "Merged main branch to staging"
+          git merge main -m "Merged main branch to staging"
       - name: Push the updated staging branch
         run: git push origin staging
