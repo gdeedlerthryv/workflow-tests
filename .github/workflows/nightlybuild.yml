@@ -1,24 +1,30 @@
-
+name: Update Staging Branch
 
 on:
   push:
     branches:
-      - 'main'
+      - main
 
 jobs:
-  build:
+  update_staging_branch:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout the Repository
-      uses: actions/checkout@v3
+    - name: Checkout main branch
+      uses: actions/checkout@v2
       with:
+        ref: main
+        fetch-depth: 0
         token: ${{ secrets.TOKEN }}
 
-    - name: Merge Develop into Staging
+    - name: Checkout staging branch
+      uses: actions/checkout@v2
+      with:
+        ref: staging
+        fetch-depth: 0
+        token: ${{ secrets.TOKEN }}
+
+    - name: Rebase Staging Branch
       run: |
-        git fetch
-        git checkout staging
-        git pull
-        git merge main -m "Auto-merge main to staging"
-        git push origin staging
+        git rebase main
+        git push origin staging --force
