@@ -2,7 +2,7 @@ name: Merge Develop into Staging
 
 on:
   schedule:
-    - cron: '40 16 * * *'
+    - cron: '0 17 * * *'
   workflow_dispatch:
 
 jobs:
@@ -12,6 +12,8 @@ jobs:
     steps:
     - name: Checkout the Repository
       uses: actions/checkout@v2
+        with:
+        token: ${{ secrets.TOKEN }}
 
     - name: Merge Develop into Staging
       run: |
