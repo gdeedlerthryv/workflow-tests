@@ -25,6 +25,7 @@ jobs:
           git config user.name "Update branch"
           git config user.email github-actions@github.com
           git checkout staging
-          git merge main
+          git merge --squash main
+          git commit -m "Testing nightly merge"
       - name: Push the updated staging branch
         run: git push origin staging
