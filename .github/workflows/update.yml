@@ -20,12 +20,11 @@ jobs:
           fetch-depth: 0
           token: ${{secrets.NIGHTLY_TOKEN}}
 
-      - name: Run a multi-line script
+      - name: Merge main into staging
         run: |
           git config user.name "Update branch"
           git config user.email github-actions@github.com
           git checkout staging
-          git merge --squash main
-          git commit -m "Testing nightly merge"
+          git merge main
       - name: Push the updated staging branch
         run: git push origin staging
